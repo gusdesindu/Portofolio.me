@@ -71,7 +71,7 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
           window.scrollTo({ top: targetScroll, behavior: 'auto' });
         } else {
           const distance = targetScroll - startScroll;
-          const duration = isMobile ? 550 : 500;
+          const duration = 300;
           const startTime = performance.now();
 
           const animateScroll = (currentTime: number) => {
