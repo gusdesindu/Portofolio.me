@@ -60,8 +60,38 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
     setActiveSection(href);
 
     if (target instanceof HTMLElement) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      window.history.replaceState(null, '', href);
+      const startScroll = window.scrollY;
+      const headerOffset = 96;
+      const targetScroll = Math.max(0, target.getBoundingClientRect().top + startScroll - headerOffset);
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const scrollSection = () => {
+        if (reducedMotion) {
+          window.scrollTo({ top: targetScroll, behavior: 'auto' });
+        } else {
+          const distance = targetScroll - startScroll;
+          const duration = isMobile ? 900 : 650;
+          const startTime = performance.now();
+
+          const animateScroll = (currentTime: number) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = progress < 0.5
+              ? 4 * progress * progress * progress
+              : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+            window.scrollTo(0, startScroll + distance * eased);
+            if (progress < 1) requestAnimationFrame(animateScroll);
+          };
+
+          requestAnimationFrame(animateScroll);
+        }
+
+        window.history.replaceState(null, '', href);
+      };
+
+      window.setTimeout(scrollSection, isMobile && menuOpen ? 280 : 0);
     }
   };
 
@@ -134,7 +164,7 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
       </nav>
 
       <div
-        className={`grid overflow-hidden border-t border-slate-200 bg-white transition-[grid-template-rows,opacity] duration-300 md:hidden ${
+        className={`grid overflow-hidden border-t border-slate-200 bg-white transition-[grid-template-rows,opacity] duration-500 ease-in-out md:hidden ${
           menuOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
@@ -144,12 +174,12 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
               <a
                 key={item.href}
                 href={item.href}
-                className={`mobile-nav-item block rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                className={`mobile-nav-item block rounded-lg px-3 py-2 text-sm font-medium transition-all duration-500 ease-in-out ${
                   activeSection === item.href
                     ? 'bg-blue-50 text-blue-600'
                     : 'text-slate-700 hover:bg-slate-50 hover:text-blue-600'
                 } ${menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}
-                style={{ transitionDelay: menuOpen ? `${index * 45}ms` : '0ms' }}
+                style={{ transitionDelay: menuOpen ? `${index * 60}ms` : '0ms' }}
                 onClick={(event) => navigateTo(event, item.href)}
               >
                 {item.label}
