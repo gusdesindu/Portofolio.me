@@ -71,7 +71,7 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
           window.scrollTo({ top: targetScroll, behavior: 'auto' });
         } else {
           const distance = targetScroll - startScroll;
-          const duration = isMobile ? 900 : 650;
+          const duration = isMobile ? 550 : 500;
           const startTime = performance.now();
 
           const animateScroll = (currentTime: number) => {
@@ -91,7 +91,7 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
         window.history.replaceState(null, '', href);
       };
 
-      window.setTimeout(scrollSection, isMobile && menuOpen ? 280 : 0);
+      window.setTimeout(scrollSection, isMobile && menuOpen ? 120 : 0);
     }
   };
 
@@ -164,7 +164,7 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
       </nav>
 
       <div
-        className={`grid overflow-hidden border-t border-slate-200 bg-white transition-[grid-template-rows,opacity] duration-500 ease-in-out md:hidden ${
+        className={`grid overflow-hidden border-t border-slate-200 bg-white transition-[grid-template-rows,opacity] duration-300 ease-out md:hidden ${
           menuOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
@@ -174,12 +174,12 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
               <a
                 key={item.href}
                 href={item.href}
-                className={`mobile-nav-item block rounded-lg px-3 py-2 text-sm font-medium transition-all duration-500 ease-in-out ${
+                className={`mobile-nav-item block rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 ease-out ${
                   activeSection === item.href
                     ? 'bg-blue-50 text-blue-600'
                     : 'text-slate-700 hover:bg-slate-50 hover:text-blue-600'
                 } ${menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}
-                style={{ transitionDelay: menuOpen ? `${index * 60}ms` : '0ms' }}
+                style={{ transitionDelay: menuOpen ? `${index * 35}ms` : '0ms' }}
                 onClick={(event) => navigateTo(event, item.href)}
               >
                 {item.label}
