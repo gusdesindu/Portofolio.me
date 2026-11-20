@@ -91,7 +91,7 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
         window.history.replaceState(null, '', href);
       };
 
-      window.setTimeout(scrollSection, isMobile && menuOpen ? 120 : 0);
+      scrollSection();
     }
   };
 
