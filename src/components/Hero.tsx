@@ -43,10 +43,10 @@ export function Hero({ language, t }: HeroProps) {
           </div>
 
           <div className="flex items-center gap-4 pt-2">
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 p-3 text-slate-700 transition hover:border-blue-600 hover:text-blue-600" aria-label="GitHub">
+            <a href="https://github.com/gusdesindu" target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 p-3 text-slate-700 transition hover:border-blue-600 hover:text-blue-600" aria-label="GitHub">
               <GitBranch size={18} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 p-3 text-slate-700 transition hover:border-blue-600 hover:text-blue-600" aria-label="LinkedIn">
+            <a href="#" target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 p-3 text-slate-700 transition hover:border-blue-600 hover:text-blue-600" aria-label="LinkedIn">
               <Globe size={18} />
             </a>
           </div>

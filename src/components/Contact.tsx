@@ -9,7 +9,7 @@ type ContactProps = {
 const socials = [
   { label: 'Email', value: 'tugusde23@gmail.com', href: 'mailto:tugusde23@gmail.com', icon: Mail },
   { label: 'GitHub', value: 'github.com/gusdesindu', href: 'https://github.com/gusdesindu', icon: UserRound },
-  { label: 'LinkedIn', value: 'linkedin.com/in/yourname', href: 'https://linkedin.com', icon: Globe },
+  { label: 'LinkedIn', value: 'linkedin.com', href: '#', icon: Globe },
   { label: 'Instagram', value: '@tugusde23', href: 'https://instagram.com/tugusde23', icon: Send },
 ];
 

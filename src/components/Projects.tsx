@@ -1,4 +1,3 @@
-import { ArrowUpRight, GitBranch } from 'lucide-react';
 import Image from 'next/image';
 import type { Language, translations } from '@/data/content';
 import { projects } from '@/data/projects';
@@ -45,17 +44,6 @@ export function Projects({ language, t }: ProjectsProps) {
                       {tech}
                     </span>
                   ))}
-                </div>
-
-                <div className="flex flex-wrap gap-3 pt-2">
-                  <a href={project.liveUrl} className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-500">
-                    Live Demo
-                    <ArrowUpRight size={16} />
-                  </a>
-                  <a href={project.githubUrl} className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-800 transition hover:border-blue-600 hover:text-blue-600">
-                    <GitBranch size={16} />
-                    Source Code
-                  </a>
                 </div>
               </div>
             </article>

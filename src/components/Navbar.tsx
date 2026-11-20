@@ -1,7 +1,8 @@
 'use client';
 
 import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import type { MouseEvent } from 'react';
 import type { Language } from '@/data/content';
 
 const navItems: Record<Language, { label: string; href: string }[]> = {
@@ -28,25 +29,74 @@ type NavbarProps = {
 
 export function Navbar({ language, setLanguage }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('#home');
   const items = navItems[language];
+
+  useEffect(() => {
+    const sections = items
+      .map((item) => document.querySelector(item.href))
+      .filter((section): section is HTMLElement => section instanceof HTMLElement);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible) setActiveSection(`#${visible.target.id}`);
+      },
+      { rootMargin: '-25% 0px -55%', threshold: [0.05, 0.25, 0.5] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [items]);
+
+  const navigateTo = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    event.preventDefault();
+    const target = document.querySelector(href);
+
+    setMenuOpen(false);
+    setActiveSection(href);
+
+    if (target instanceof HTMLElement) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.history.replaceState(null, '', href);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <a href="#home" className="text-xl font-bold tracking-tight text-slate-900">
+        <a
+          href="#home"
+          onClick={(event) => navigateTo(event, '#home')}
+          className="text-xl font-bold tracking-tight text-slate-900"
+        >
           Portfolio<span className="text-blue-600">.</span>
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
-          {items.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-slate-600 transition hover:text-blue-600"
-            >
-              {item.label}
-            </a>
-          ))}
+          {items.map((item) => {
+            const active = activeSection === item.href;
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(event) => navigateTo(event, item.href)}
+                className={`relative py-2 text-sm font-medium transition-colors duration-300 ${
+                  active ? 'text-blue-600' : 'text-slate-600 hover:text-blue-600'
+                }`}
+              >
+                {item.label}
+                <span
+                  className={`absolute inset-x-0 -bottom-0.5 h-0.5 origin-center rounded-full bg-blue-600 transition-transform duration-300 ${
+                    active ? 'scale-x-100' : 'scale-x-0'
+                  }`}
+                />
+              </a>
+            );
+          })}
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
@@ -74,38 +124,48 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 text-slate-700 md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 text-slate-700 transition-colors duration-300 hover:border-blue-600 hover:text-blue-600 md:hidden"
           onClick={() => setMenuOpen((value) => !value)}
           aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
         >
           {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </nav>
 
-      {menuOpen && (
-        <div className="border-t border-slate-200 bg-white md:hidden">
+      <div
+        className={`grid overflow-hidden border-t border-slate-200 bg-white transition-[grid-template-rows,opacity] duration-300 md:hidden ${
+          menuOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+        }`}
+      >
+        <div className="min-h-0">
           <div className="mx-auto max-w-6xl space-y-2 px-4 py-4">
-            {items.map((item) => (
+            {items.map((item, index) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-blue-600"
-                onClick={() => setMenuOpen(false)}
+                className={`mobile-nav-item block rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                  activeSection === item.href
+                    ? 'bg-blue-50 text-blue-600'
+                    : 'text-slate-700 hover:bg-slate-50 hover:text-blue-600'
+                } ${menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}
+                style={{ transitionDelay: menuOpen ? `${index * 45}ms` : '0ms' }}
+                onClick={(event) => navigateTo(event, item.href)}
               >
                 {item.label}
               </a>
             ))}
             <div className="flex gap-3 pt-2">
-              <button type="button" onClick={() => { setLanguage('id'); setMenuOpen(false); }} className={`flex-1 rounded-full border px-3 py-2 text-sm font-medium ${language === 'id' ? 'border-blue-600 bg-blue-600 text-white' : 'border-slate-200 text-slate-700'}`}>
+              <button type="button" onClick={() => { setLanguage('id'); setMenuOpen(false); }} className={`flex-1 rounded-full border px-3 py-2 text-sm font-medium transition-colors ${language === 'id' ? 'border-blue-600 bg-blue-600 text-white' : 'border-slate-200 text-slate-700'}`}>
                 ID
               </button>
-              <button type="button" onClick={() => { setLanguage('en'); setMenuOpen(false); }} className={`flex-1 rounded-full border px-3 py-2 text-sm font-medium ${language === 'en' ? 'border-blue-600 bg-blue-600 text-white' : 'border-slate-200 text-slate-700'}`}>
+              <button type="button" onClick={() => { setLanguage('en'); setMenuOpen(false); }} className={`flex-1 rounded-full border px-3 py-2 text-sm font-medium transition-colors ${language === 'en' ? 'border-blue-600 bg-blue-600 text-white' : 'border-slate-200 text-slate-700'}`}>
                 EN
               </button>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

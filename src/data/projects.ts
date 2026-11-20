@@ -6,8 +6,6 @@ export type Project = {
   };
   technologies: string[];
   image: string;
-  liveUrl: string;
-  githubUrl: string;
   featured?: boolean;
 };
 
@@ -20,8 +18,6 @@ export const projects: Project[] = [
     },
     technologies: ['Next.js', 'Tailwind CSS', 'API'],
     image: '/images/berita.png',
-    liveUrl: '#',
-    githubUrl: '#',
     featured: true,
   },
   {
@@ -32,8 +28,6 @@ export const projects: Project[] = [
     },
     technologies: ['Figma', 'UI/UX', 'Design System'],
     image: '/images/figmaa.png',
-    liveUrl: '#',
-    githubUrl: '#',
   },
   {
     title: 'JobFinder',
@@ -43,8 +37,6 @@ export const projects: Project[] = [
     },
     technologies: ['React', 'TypeScript', 'Tailwind CSS'],
     image: '/images/JobFinder.png',
-    liveUrl: '#',
-    githubUrl: '#',
   },
   {
     title: 'Catalog App',
@@ -54,8 +46,6 @@ export const projects: Project[] = [
     },
     technologies: ['HTML', 'CSS', 'JavaScript'],
     image: '/images/katalog.png',
-    liveUrl: '#',
-    githubUrl: '#',
   },
   {
     title: 'Portfolio Website',
@@ -65,8 +55,6 @@ export const projects: Project[] = [
     },
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     image: '/images/portfolio.png',
-    liveUrl: '#',
-    githubUrl: '#',
   },
   {
     title: 'Praktik Project',
@@ -76,8 +64,6 @@ export const projects: Project[] = [
     },
     technologies: ['HTML', 'CSS', 'React'],
     image: '/images/praktik.png',
-    liveUrl: '#',
-    githubUrl: '#',
   },
   {
     title: 'UMKM Showcase',
@@ -87,7 +73,5 @@ export const projects: Project[] = [
     },
     technologies: ['Laravel', 'PHP', 'Bootstrap'],
     image: '/images/umkm.png',
-    liveUrl: '#',
-    githubUrl: '#',
   },
 ];
