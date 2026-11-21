@@ -3,6 +3,9 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-poppins)', 'Poppins', 'sans-serif'],
+      },
       boxShadow: {
         soft: '0 20px 45px -20px rgba(37, 99, 235, 0.25)',
       },
