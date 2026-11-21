@@ -16,17 +16,17 @@ export default function Home() {
   const t = translations[language];
 
   useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const elements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
 
-    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    if (isMobile || prefersReducedMotion || !('IntersectionObserver' in window)) {
       elements.forEach((element) => element.classList.add('is-visible'));
+      document.documentElement.classList.remove('reveal-ready');
       return;
     }
 
     document.documentElement.classList.add('reveal-ready');
-
-    const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -37,10 +37,7 @@ export default function Home() {
           }
         });
       },
-      {
-        threshold: isMobile ? 0.06 : 0.12,
-        rootMargin: isMobile ? '0px 0px -4% 0px' : '0px 0px -8% 0px',
-      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
     );
 
     elements.forEach((element) => observer.observe(element));
