@@ -96,8 +96,9 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5">
+      <nav className="relative mx-auto flex max-w-6xl items-center justify-between overflow-hidden rounded-2xl border border-white/70 bg-white/55 px-4 py-3 shadow-[0_12px_35px_-18px_rgba(15,23,42,0.45)] backdrop-blur-2xl backdrop-saturate-150 sm:px-5">
+        <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
         <a
           href="#home"
           onClick={(event) => navigateTo(event, '#home')}
@@ -164,8 +165,10 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
       </nav>
 
       <div
-        className={`grid overflow-hidden border-t border-slate-200 bg-white transition-[grid-template-rows,opacity] duration-300 ease-out md:hidden ${
-          menuOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+        className={`absolute left-3 right-3 top-[calc(100%+0.5rem)] z-50 mx-auto grid max-w-6xl overflow-hidden rounded-2xl border border-white/80 bg-white/75 shadow-[0_18px_45px_-20px_rgba(15,23,42,0.45)] backdrop-blur-2xl backdrop-saturate-150 transition-[grid-template-rows,opacity,transform] duration-300 ease-out md:hidden sm:left-5 sm:right-5 ${
+          menuOpen
+            ? 'pointer-events-auto grid-rows-[1fr] translate-y-0 opacity-100'
+            : 'pointer-events-none grid-rows-[0fr] -translate-y-2 opacity-0'
         }`}
       >
         <div className="min-h-0">

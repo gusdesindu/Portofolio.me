@@ -1,4 +1,4 @@
-import { ArrowRight, Download, GitBranch, Globe } from 'lucide-react';
+import { ArrowRight, GitBranch, Globe } from 'lucide-react';
 import Image from 'next/image';
 import type { Language, translations } from '@/data/content';
 
@@ -9,63 +9,73 @@ type HeroProps = {
 
 export function Hero({ language, t }: HeroProps) {
   return (
-    <section id="home" className="relative overflow-hidden bg-white">
-      <div className="absolute inset-x-0 top-0 -z-10 h-72 bg-gradient-to-b from-blue-50 to-white" />
-      <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-18">
-        <div className="space-y-8 lg:max-w-[540px] lg:justify-self-end">
-          <span className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700">
+    <section id="home" className="relative isolate -mt-[76px] min-h-screen overflow-hidden bg-slate-950">
+      <Image
+        src="/images/bcg.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="scale-[1.02] object-cover object-center blur-[1px]"
+      />
+
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(248,250,252,0.97)_0%,rgba(248,250,252,0.9)_42%,rgba(248,250,252,0.46)_72%,rgba(15,23,42,0.12)_100%)] backdrop-blur-[1px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_48%,rgba(37,99,235,0.16),transparent_25%),linear-gradient(180deg,rgba(255,255,255,0.1),rgba(15,23,42,0.18))]" />
+
+      <div className="relative mx-auto grid min-h-screen max-w-6xl content-start items-start gap-8 px-4 pb-10 pt-32 sm:px-6 sm:pt-28 lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:pb-14 lg:pt-32">
+        <div className="relative z-10 max-w-[620px] space-y-5 sm:space-y-6">
+          <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-white/75 px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm backdrop-blur-md">
+            <span className="h-2 w-2 rounded-full bg-blue-600 shadow-[0_0_0_5px_rgba(37,99,235,0.12)]" />
             {t.badge}
           </span>
+
           <div className="space-y-4">
-            <p className="text-base font-medium uppercase tracking-[0.2em] text-slate-500">{t.hello}</p>
-            <h1 className="text-4xl font-black tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+            <p className="text-sm font-bold uppercase tracking-[0.24em] text-slate-600 sm:text-base">{t.hello}</p>
+            <h1 className="max-w-[600px] text-5xl font-black leading-[1.02] tracking-[-0.04em] text-slate-950 sm:text-6xl lg:text-7xl">
               {t.name}
             </h1>
-            <p className="max-w-xl text-lg text-slate-600">{t.intro}</p>
+            <p className="max-w-xl text-lg leading-relaxed text-slate-700 sm:text-xl">{t.intro}</p>
           </div>
 
           <div className="flex flex-col gap-4 sm:flex-row">
             <a
               href="#projects"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-soft transition hover:bg-blue-500"
+              className="group inline-flex items-center justify-center gap-3 rounded-full bg-blue-600 px-7 py-3.5 text-base font-semibold text-white shadow-[0_18px_40px_-14px_rgba(37,99,235,0.65)] transition duration-300 hover:-translate-y-1 hover:bg-blue-700"
             >
               {t.primaryCta}
-              <ArrowRight size={18} />
+              <ArrowRight size={19} className="transition-transform group-hover:translate-x-1" />
             </a>
-            {/* <a
-              href="/cv.pdf"
-              download
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-base font-semibold text-slate-800 transition hover:border-blue-600 hover:text-blue-600"
-            >
-              <Download size={18} />
-              {t.secondaryCta}
-            </a> */}
           </div>
 
-          <div className="flex items-center gap-4 pt-2">
-            <a href="https://github.com/gusdesindu" target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 p-3 text-slate-700 transition hover:border-blue-600 hover:text-blue-600" aria-label="GitHub">
-              <GitBranch size={18} />
+          <div className="relative z-20 flex items-center gap-4 pt-3">
+            <a href="https://github.com/gusdesindu" target="_blank" rel="noreferrer" className="rounded-full border border-slate-300/80 bg-white/70 p-3.5 text-slate-800 shadow-sm backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-blue-600 hover:text-blue-600" aria-label="GitHub">
+              <GitBranch size={19} />
             </a>
-            <a href="#" target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 p-3 text-slate-700 transition hover:border-blue-600 hover:text-blue-600" aria-label="LinkedIn">
-              <Globe size={18} />
+            <a href="#" target="_blank" rel="noreferrer" className="rounded-full border border-slate-300/80 bg-white/70 p-3.5 text-slate-800 shadow-sm backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-blue-600 hover:text-blue-600" aria-label="LinkedIn">
+              <Globe size={19} />
             </a>
           </div>
         </div>
 
-        <div className="relative mx-auto hidden w-full max-w-[240px] animate-float lg:block lg:max-w-[260px] lg:justify-self-center">
-          <div className="absolute -left-4 top-4 h-16 w-16 rounded-full bg-blue-200/60 blur-2xl" />
-          <div className="absolute -right-3 bottom-4 h-20 w-20 rounded-full bg-sky-200/70 blur-2xl" />
-          <div className="relative overflow-hidden rounded-[1.5rem] border border-slate-200 bg-slate-50 p-2 shadow-soft">
+        <div className="relative mx-auto mt-2 hidden h-[430px] w-full max-w-[360px] items-end justify-center lg:flex lg:justify-self-end">
+          <div className="absolute bottom-6 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-blue-500/25 blur-3xl" />
+          <div className="absolute left-0 top-16 h-20 w-20 rounded-full border border-white/60 bg-white/20 backdrop-blur-md" />
+          <div className="absolute bottom-24 right-0 h-14 w-14 rotate-12 rounded-2xl border border-white/60 bg-blue-500/20 backdrop-blur-md" />
+
+          <div className="relative h-[390px] w-[285px] animate-float overflow-hidden rounded-[2rem] border border-white/70 bg-slate-950/20 p-2.5 shadow-[0_30px_80px_-25px_rgba(15,23,42,0.55)] backdrop-blur-md">
             <Image
               src="/images/profil.jpg"
               alt={language === 'id' ? 'Potret profil' : 'Profile portrait'}
               width={900}
               height={1100}
-              className="h-[300px] w-full rounded-[1rem] object-cover sm:h-[320px]"
+              priority
+              className="h-full w-full rounded-[1.45rem] object-cover object-top"
             />
           </div>
         </div>
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white/75 to-transparent" />
     </section>
   );
 }
