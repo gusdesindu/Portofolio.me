@@ -165,7 +165,7 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
       </nav>
 
       <div
-        className={`absolute left-3 right-3 top-[calc(100%+0.5rem)] z-50 mx-auto grid max-w-6xl overflow-hidden rounded-2xl border border-white/80 bg-white/75 shadow-[0_18px_45px_-20px_rgba(15,23,42,0.45)] backdrop-blur-2xl backdrop-saturate-150 transition-[grid-template-rows,opacity,transform] duration-300 ease-out md:hidden sm:left-5 sm:right-5 ${
+        className={`absolute left-3 right-3 top-[calc(100%+0.5rem)] z-50 mx-auto grid max-w-6xl overflow-hidden rounded-2xl border border-white/80 bg-white/75 shadow-[0_18px_45px_-20px_rgba(15,23,42,0.45)] backdrop-blur-xl backdrop-saturate-150 transition-[grid-template-rows,opacity,transform] duration-200 ease-out md:hidden sm:left-5 sm:right-5 ${
           menuOpen
             ? 'pointer-events-auto grid-rows-[1fr] translate-y-0 opacity-100'
             : 'pointer-events-none grid-rows-[0fr] -translate-y-2 opacity-0'
@@ -182,7 +182,7 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
                     ? 'bg-blue-50 text-blue-600'
                     : 'text-slate-700 hover:bg-slate-50 hover:text-blue-600'
                 } ${menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}
-                style={{ transitionDelay: menuOpen ? `${index * 35}ms` : '0ms' }}
+                style={{ transitionDelay: menuOpen ? `${index * 25}ms` : '0ms' }}
                 onClick={(event) => navigateTo(event, item.href)}
               >
                 {item.label}

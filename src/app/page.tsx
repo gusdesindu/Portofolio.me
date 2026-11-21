@@ -26,6 +26,8 @@ export default function Home() {
 
     document.documentElement.classList.add('reveal-ready');
 
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -35,7 +37,10 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+      {
+        threshold: isMobile ? 0.06 : 0.12,
+        rootMargin: isMobile ? '0px 0px -4% 0px' : '0px 0px -8% 0px',
+      },
     );
 
     elements.forEach((element) => observer.observe(element));
