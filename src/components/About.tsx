@@ -15,7 +15,7 @@ const skills = [
 
 export function About({ language, t }: AboutProps) {
   return (
-    <section id="about" className="relative overflow-hidden bg-slate-50 py-20 sm:py-24">
+    <section id="about" data-reveal className="relative overflow-hidden bg-slate-50 py-20 sm:py-24">
       <div className="absolute left-[-10rem] top-20 h-72 w-72 rounded-full bg-blue-100/60 blur-3xl" />
       <div className="absolute bottom-[-8rem] right-[-8rem] h-80 w-80 rounded-full bg-sky-100/70 blur-3xl" />
 

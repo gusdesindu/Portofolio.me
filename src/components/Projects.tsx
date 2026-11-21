@@ -10,7 +10,7 @@ type ProjectsProps = {
 
 export function Projects({ language, t }: ProjectsProps) {
   return (
-    <section id="projects" className="relative overflow-hidden bg-white py-20 sm:py-24">
+    <section id="projects" data-reveal className="relative overflow-hidden bg-white py-20 sm:py-24">
       <div className="absolute right-[-12rem] top-20 h-72 w-72 rounded-full bg-blue-100/60 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

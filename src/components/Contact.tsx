@@ -15,7 +15,7 @@ const socials = [
 
 export function Contact({ language, t }: ContactProps) {
   return (
-    <section id="contact" className="relative overflow-hidden bg-white py-20 sm:py-24">
+    <section id="contact" data-reveal className="relative overflow-hidden bg-white py-20 sm:py-24">
       <div className="absolute left-1/2 top-16 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-100/70 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

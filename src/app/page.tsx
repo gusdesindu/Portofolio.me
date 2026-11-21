@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { About } from '@/components/About';
 import { BackToTop } from '@/components/BackToTop';
 import { Contact } from '@/components/Contact';
@@ -14,6 +14,34 @@ import { translations, type Language } from '@/data/content';
 export default function Home() {
   const [language, setLanguage] = useState<Language>('en');
   const t = translations[language];
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const elements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      elements.forEach((element) => element.classList.add('is-visible'));
+      return;
+    }
+
+    document.documentElement.classList.add('reveal-ready');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+    );
+
+    elements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <main className="bg-white text-slate-900 antialiased">
