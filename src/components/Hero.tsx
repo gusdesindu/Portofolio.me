@@ -9,7 +9,7 @@ type HeroProps = {
 
 export function Hero({ language, t }: HeroProps) {
   return (
-    <section id="home" data-reveal="scale" className="relative isolate -mt-[76px] min-h-screen overflow-hidden bg-slate-950">
+    <section id="home" className="relative isolate -mt-[76px] min-h-screen overflow-hidden bg-slate-950">
       <Image
         src="/images/hero-blue.svg"
         alt=""
@@ -24,12 +24,12 @@ export function Hero({ language, t }: HeroProps) {
 
       <div className="relative mx-auto grid min-h-screen max-w-6xl content-start items-start gap-8 px-4 pb-10 pt-32 sm:px-6 sm:pt-28 lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:pb-14 lg:pt-32">
         <div className="relative z-10 max-w-[620px] space-y-5 sm:space-y-6">
-          <span data-reveal className="inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-white/75 px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm backdrop-blur-md" style={{ transitionDelay: '120ms' }}>
+          <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-white/75 px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm backdrop-blur-md">
             <span className="h-2 w-2 rounded-full bg-blue-600 shadow-[0_0_0_5px_rgba(37,99,235,0.12)]" />
             {t.badge}
           </span>
 
-          <div className="space-y-4" data-reveal style={{ transitionDelay: '220ms' }}>
+          <div className="space-y-4">
             <p className="text-sm font-bold uppercase tracking-[0.24em] text-slate-600 sm:text-base">{t.hello}</p>
             <h1 className="max-w-[600px] text-5xl font-black leading-[1.02] tracking-[-0.04em] text-slate-950 sm:text-6xl lg:text-7xl">
               {t.name}
@@ -37,7 +37,7 @@ export function Hero({ language, t }: HeroProps) {
             <p className="max-w-xl text-lg leading-relaxed text-slate-700 sm:text-xl">{t.intro}</p>
           </div>
 
-          <div className="flex flex-col gap-4 sm:flex-row" data-reveal style={{ transitionDelay: '340ms' }}>
+          <div className="flex flex-col gap-4 sm:flex-row">
             <a
               href="#projects"
               className="group inline-flex items-center justify-center gap-3 rounded-full bg-blue-600 px-7 py-3.5 text-base font-semibold text-white shadow-[0_18px_40px_-14px_rgba(37,99,235,0.65)] transition duration-300 hover:-translate-y-1 hover:bg-blue-700"
@@ -47,7 +47,7 @@ export function Hero({ language, t }: HeroProps) {
             </a>
           </div>
 
-          <div className="relative z-20 flex items-center gap-4 pt-3" data-reveal style={{ transitionDelay: '460ms' }}>
+          <div className="relative z-20 flex items-center gap-4 pt-3">
             <a href="https://github.com/gusdesindu" target="_blank" rel="noreferrer" className="rounded-full border border-slate-300/80 bg-white/70 p-3.5 text-slate-800 shadow-sm backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-blue-600 hover:text-blue-600" aria-label="GitHub">
               <GitBranch size={19} />
             </a>
@@ -57,19 +57,19 @@ export function Hero({ language, t }: HeroProps) {
           </div>
         </div>
 
-        <div className="relative mx-auto mt-2 hidden h-[430px] w-full max-w-[360px] items-end justify-center lg:flex lg:justify-self-end" data-reveal style={{ transitionDelay: '420ms' }}>
+        <div className="relative mx-auto mt-2 hidden h-[430px] w-full max-w-[360px] items-end justify-center lg:flex lg:justify-self-end">
           <div className="absolute bottom-6 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-blue-500/25 blur-3xl" />
           <div className="absolute left-0 top-16 h-20 w-20 rounded-full border border-white/60 bg-white/20 backdrop-blur-md" />
           <div className="absolute bottom-24 right-0 h-14 w-14 rotate-12 rounded-2xl border border-white/60 bg-blue-500/20 backdrop-blur-md" />
 
-          <div className="relative h-[390px] w-[285px] -translate-y-10 overflow-hidden rounded-[2rem] border border-white/70 bg-slate-950/20 p-2.5 shadow-[0_30px_80px_-25px_rgba(15,23,42,0.55)] backdrop-blur-md" data-reveal="scale" style={{ transitionDelay: '280ms' }}>
+          <div className="group relative h-[390px] w-[285px] -translate-y-10 overflow-hidden rounded-[2rem] border border-white/70 bg-slate-950/20 p-2.5 shadow-[0_30px_80px_-25px_rgba(15,23,42,0.55)] backdrop-blur-md">
             <Image
               src="/images/foto.png"
               alt={language === 'id' ? 'Potret profil' : 'Profile portrait'}
               width={900}
               height={1100}
               priority
-              className="h-full w-full rounded-[1.45rem] object-contain object-top"
+              className="h-full w-full rounded-[1.45rem] object-contain object-top transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>
         </div>
