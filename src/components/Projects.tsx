@@ -104,14 +104,17 @@ export function Projects({ language, t }: ProjectsProps) {
           ref={albumRef}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.12}
+          dragElastic={0.06}
+          dragMomentum={false}
           onPointerEnter={() => setIsPaused(true)}
           onPointerLeave={() => setIsPaused(false)}
+          onPointerDown={() => setIsPaused(true)}
+          onPointerUp={() => setIsPaused(false)}
           onDragEnd={(_event: PointerEvent, info: PanInfo) => {
-            if (info.offset.x < -45 || info.velocity.x < -350) showNext();
-            if (info.offset.x > 45 || info.velocity.x > 350) showPrevious();
+            if (info.offset.x < -32 || info.velocity.x < -280) showNext();
+            if (info.offset.x > 32 || info.velocity.x > 280) showPrevious();
           }}
-          className="relative mx-auto h-[215px] cursor-grab active:cursor-grabbing sm:h-[230px] lg:h-[270px]"
+          className="relative mx-auto h-[215px] touch-pan-y cursor-grab active:cursor-grabbing sm:h-[230px] lg:h-[270px]"
         >
           {projects.map((project, index) => {
             let position = index - activeIndex;

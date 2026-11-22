@@ -16,9 +16,14 @@ export function SmoothScroll() {
     const lenis = new Lenis({
       duration: 1.15,
       smoothWheel: true,
-      anchors: true,
+      touchMultiplier: 1.1,
+      wheelMultiplier: 0.9,
+      anchors: false,
+      prevent: (node) => node.closest('[data-no-smooth]') !== null,
     });
 
+    const viewport = window as typeof window & { __lenis?: Lenis };
+    viewport.__lenis = lenis;
     lenis.on('scroll', ScrollTrigger.update);
 
     let frame = 0;
@@ -31,6 +36,7 @@ export function SmoothScroll() {
 
     return () => {
       cancelAnimationFrame(frame);
+      delete viewport.__lenis;
       lenis.destroy();
     };
   }, []);

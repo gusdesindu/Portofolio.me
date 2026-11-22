@@ -60,38 +60,25 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
     setActiveSection(href);
 
     if (target instanceof HTMLElement) {
-      const startScroll = window.scrollY;
       const headerOffset = 96;
-      const targetScroll = Math.max(0, target.getBoundingClientRect().top + startScroll - headerOffset);
-      const isMobile = window.matchMedia('(max-width: 767px)').matches;
+      const targetScroll = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset);
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      const scrollSection = () => {
-        if (reducedMotion) {
-          window.scrollTo({ top: targetScroll, behavior: 'auto' });
-        } else {
-          const distance = targetScroll - startScroll;
-          const duration = 300;
-          const startTime = performance.now();
-
-          const animateScroll = (currentTime: number) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = progress < 0.5
-              ? 4 * progress * progress * progress
-              : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-            window.scrollTo(0, startScroll + distance * eased);
-            if (progress < 1) requestAnimationFrame(animateScroll);
-          };
-
-          requestAnimationFrame(animateScroll);
-        }
-
-        window.history.replaceState(null, '', href);
+      const viewport = window as typeof window & {
+        __lenis?: { scrollTo: (target: number | HTMLElement, options?: { offset?: number; duration?: number; immediate?: boolean }) => void };
       };
 
-      scrollSection();
+      if (reducedMotion) {
+        window.scrollTo({ top: targetScroll, behavior: 'auto' });
+      } else if (viewport.__lenis) {
+        viewport.__lenis.scrollTo(target, {
+          offset: -headerOffset,
+          duration: 1.35,
+        });
+      } else {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      window.history.replaceState(null, '', href);
     }
   };
 
