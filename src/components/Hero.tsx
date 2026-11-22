@@ -16,7 +16,7 @@ export function Hero({ language, t }: HeroProps) {
         fill
         priority
         sizes="100vw"
-        className="scale-[1.02] object-cover object-center blur-[1px]"
+        className="scale-[1.02] object-cover object-center blur-[2.5px]"
       />
 
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(248,250,252,0.97)_0%,rgba(248,250,252,0.9)_42%,rgba(248,250,252,0.46)_72%,rgba(15,23,42,0.12)_100%)] backdrop-blur-[1px]" />
@@ -62,14 +62,14 @@ export function Hero({ language, t }: HeroProps) {
           <div className="absolute left-0 top-16 h-20 w-20 rounded-full border border-white/60 bg-white/20 backdrop-blur-md" />
           <div className="absolute bottom-24 right-0 h-14 w-14 rotate-12 rounded-2xl border border-white/60 bg-blue-500/20 backdrop-blur-md" />
 
-          <div className="relative h-[390px] w-[285px] animate-float overflow-hidden rounded-[2rem] border border-white/70 bg-slate-950/20 p-2.5 shadow-[0_30px_80px_-25px_rgba(15,23,42,0.55)] backdrop-blur-md">
+          <div className="relative h-[390px] w-[285px] -translate-y-3 animate-float overflow-hidden rounded-[2rem] border border-white/70 bg-slate-950/20 p-2.5 shadow-[0_30px_80px_-25px_rgba(15,23,42,0.55)] backdrop-blur-md">
             <Image
-              src="/images/profil.jpg"
+              src="/images/foto.png"
               alt={language === 'id' ? 'Potret profil' : 'Profile portrait'}
               width={900}
               height={1100}
               priority
-              className="h-full w-full rounded-[1.45rem] object-cover object-top"
+              className="h-full w-full rounded-[1.45rem] object-contain object-top"
             />
           </div>
         </div>
