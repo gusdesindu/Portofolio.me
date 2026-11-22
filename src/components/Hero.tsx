@@ -11,16 +11,16 @@ export function Hero({ language, t }: HeroProps) {
   return (
     <section id="home" className="relative isolate -mt-[76px] min-h-screen overflow-hidden bg-slate-950">
       <Image
-        src="/images/bcg.jpg"
+        src="/images/hero-blue.svg"
         alt=""
         fill
         priority
         sizes="100vw"
-        className="scale-[1.02] object-cover object-center blur-[2.5px]"
+        className="scale-[1.01] object-cover object-center"
       />
 
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(248,250,252,0.97)_0%,rgba(248,250,252,0.9)_42%,rgba(248,250,252,0.46)_72%,rgba(15,23,42,0.12)_100%)] backdrop-blur-[1px]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_48%,rgba(37,99,235,0.16),transparent_25%),linear-gradient(180deg,rgba(255,255,255,0.1),rgba(15,23,42,0.18))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(248,252,255,0.97)_0%,rgba(232,244,255,0.88)_38%,rgba(59,130,246,0.18)_72%,rgba(8,47,109,0.28)_100%)] backdrop-blur-[0.5px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_45%,rgba(191,219,254,0.5),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.12),rgba(15,76,153,0.16))]" />
 
       <div className="relative mx-auto grid min-h-screen max-w-6xl content-start items-start gap-8 px-4 pb-10 pt-32 sm:px-6 sm:pt-28 lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:pb-14 lg:pt-32">
         <div className="relative z-10 max-w-[620px] space-y-5 sm:space-y-6">
@@ -62,7 +62,7 @@ export function Hero({ language, t }: HeroProps) {
           <div className="absolute left-0 top-16 h-20 w-20 rounded-full border border-white/60 bg-white/20 backdrop-blur-md" />
           <div className="absolute bottom-24 right-0 h-14 w-14 rotate-12 rounded-2xl border border-white/60 bg-blue-500/20 backdrop-blur-md" />
 
-          <div className="relative h-[390px] w-[285px] -translate-y-3 animate-float overflow-hidden rounded-[2rem] border border-white/70 bg-slate-950/20 p-2.5 shadow-[0_30px_80px_-25px_rgba(15,23,42,0.55)] backdrop-blur-md">
+          <div className="relative h-[390px] w-[285px] -translate-y-10 overflow-hidden rounded-[2rem] border border-white/70 bg-slate-950/20 p-2.5 shadow-[0_30px_80px_-25px_rgba(15,23,42,0.55)] backdrop-blur-md">
             <Image
               src="/images/foto.png"
               alt={language === 'id' ? 'Potret profil' : 'Profile portrait'}

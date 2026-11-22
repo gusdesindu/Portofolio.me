@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="240" y1="40" x2="1680" y2="1040" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DDF3FF"/>
+      <stop offset="0.48" stop-color="#78B9F4"/>
+      <stop offset="1" stop-color="#174EA6"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="1380" y1="160" x2="1840" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#8FC7FF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="front" x1="730" y1="650" x2="1480" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D65C8"/>
+      <stop offset="1" stop-color="#082B68"/>
+    </linearGradient>
+    <linearGradient id="middle" x1="0" y1="760" x2="1920" y2="1060" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2F86DB"/>
+      <stop offset="0.55" stop-color="#155BAF"/>
+      <stop offset="1" stop-color="#0A3B86"/>
+    </linearGradient>
+    <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+  <circle cx="1510" cy="250" r="360" fill="url(#glow)" filter="url(#blur)"/>
+
+  <g opacity="0.42">
+    <path d="M0 490C190 430 320 470 470 390C650 294 812 342 980 438C1155 538 1320 432 1470 356C1630 275 1790 320 1920 390V1080H0V490Z" fill="#A7D5FA"/>
+  </g>
+  <g opacity="0.68">
+    <path d="M0 610C190 520 355 620 530 510C700 404 830 466 990 560C1160 660 1310 500 1470 430C1640 356 1780 418 1920 500V1080H0V610Z" fill="#62A8EC"/>
+  </g>
+  <g>
+    <path d="M0 760C185 660 350 730 520 626C705 512 880 600 1040 700C1220 812 1370 664 1530 610C1700 552 1810 640 1920 710V1080H0V760Z" fill="url(#middle)"/>
+    <path d="M520 1080C640 920 800 800 980 780C1180 758 1320 850 1480 810C1640 770 1780 842 1920 920V1080H520Z" fill="url(#front)" opacity="0.94"/>
+  </g>
+
+  <g fill="#FFFFFF" opacity="0.18">
+    <circle cx="1680" cy="180" r="5"/><circle cx="1730" cy="230" r="3"/><circle cx="1790" cy="170" r="7"/>
+    <circle cx="1600" cy="310" r="4"/><circle cx="1510" cy="130" r="3"/><circle cx="1815" cy="320" r="4"/>
+  </g>
+</svg>
