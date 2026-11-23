@@ -33,6 +33,8 @@ export function Projects({ language, t }: ProjectsProps) {
   const activeProject = projects[activeIndex]!;
 
   useEffect(() => {
+    if (window.matchMedia('(max-width: 767px)').matches) return;
+
     gsap.registerPlugin(ScrollTrigger);
 
     const context = gsap.context(() => {

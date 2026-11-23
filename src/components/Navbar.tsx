@@ -63,11 +63,12 @@ export function Navbar({ language, setLanguage }: NavbarProps) {
       const headerOffset = 96;
       const targetScroll = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset);
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
       const viewport = window as typeof window & {
         __lenis?: { scrollTo: (target: number | HTMLElement, options?: { offset?: number; duration?: number; immediate?: boolean }) => void };
       };
 
-      if (reducedMotion) {
+      if (reducedMotion || isMobile) {
         window.scrollTo({ top: targetScroll, behavior: 'auto' });
       } else if (viewport.__lenis) {
         viewport.__lenis.scrollTo(target, {
