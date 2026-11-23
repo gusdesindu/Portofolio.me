@@ -88,3 +88,30 @@ section {
     transition: none !important;
   }
 }
+
+@keyframes heroBackgroundDrift {
+  0% {
+    transform: scale(1.18) translate3d(-48px, -18px, 0);
+  }
+  33% {
+    transform: scale(1.22) translate3d(24px, -28px, 0);
+  }
+  66% {
+    transform: scale(1.20) translate3d(48px, 18px, 0);
+  }
+  100% {
+    transform: scale(1.18) translate3d(-48px, -18px, 0);
+  }
+}
+
+.hero-background-drift {
+  animation: heroBackgroundDrift 9s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  will-change: transform;
+}
+
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .hero-background-drift {
+    animation: none;
+    transform: scale(1.08);
+  }
+}

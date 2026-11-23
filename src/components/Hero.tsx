@@ -16,7 +16,7 @@ export function Hero({ language, t }: HeroProps) {
         fill
         priority
         sizes="100vw"
-        className="scale-[1.01] object-cover object-center"
+        className="hero-background-drift scale-[1.08] object-cover object-center motion-reduce:animate-none"
       />
 
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(248,252,255,0.97)_0%,rgba(232,244,255,0.88)_38%,rgba(59,130,246,0.18)_72%,rgba(8,47,109,0.28)_100%)] backdrop-blur-[0.5px]" />
