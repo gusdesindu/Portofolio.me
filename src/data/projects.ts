@@ -66,6 +66,15 @@ export const projects: Project[] = [
     image: '/images/praktik.png',
   },
   {
+    title: 'Metro Trans Christindo',
+    description: {
+      id: 'Website rental mobil dengan tampilan modern untuk melihat armada, layanan penyewaan, dan informasi kontak.',
+      en: 'Car rental website with a modern interface for viewing vehicle fleets, rental services, and contact information.',
+    },
+    technologies: ['PHP', 'MySQL'],
+    image: '/images/rental.png',
+  },
+  {
     title: 'UMKM Showcase',
     description: {
       id: 'Website brand UMKM dengan tampilan produk dan informasi usaha yang dibuat agar lebih menarik dan mudah dipahami.',
